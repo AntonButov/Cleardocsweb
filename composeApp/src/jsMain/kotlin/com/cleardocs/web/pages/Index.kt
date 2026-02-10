@@ -6,6 +6,7 @@ import com.cleardocs.web.components.layout.AppLayout
 import com.cleardocs.web.firebase.AuthState
 import com.varabyte.kobweb.core.Page
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.web.attributes.*
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H1
@@ -18,7 +19,7 @@ fun IndexPage() {
     val scope = rememberCoroutineScope()
 
     AppLayout {
-        Div(attrs = { this["class"] = "home-card" }) {
+        Div(attrs = { classes("home-card") }) {
             if (AuthState.isAuthenticated) {
                 H1 {
                     Text("Привет, ${AuthState.userDisplayName ?: "пользователь"}")
@@ -27,7 +28,7 @@ fun IndexPage() {
                     Text("Спасибо, что пользуетесь ClearDocs. Вы вошли в систему.")
                 }
                 Button(attrs = {
-                    this["class"] = "auth-button"
+                    classes("auth-button")
                     onClick {
                         scope.launch {
                             AuthState.signOut()

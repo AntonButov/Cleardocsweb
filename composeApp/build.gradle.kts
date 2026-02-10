@@ -34,6 +34,10 @@ kotlin {
                 implementation(npm("firebase", "10.11.0"))
             }
         }
-        val jsTest by getting
+        val jsTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
     }
 }

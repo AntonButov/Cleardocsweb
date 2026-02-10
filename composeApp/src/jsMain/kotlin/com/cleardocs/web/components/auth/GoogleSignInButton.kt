@@ -3,11 +3,10 @@ package com.cleardocs.web.components.auth
 import androidx.compose.runtime.*
 import com.cleardocs.web.firebase.AuthState
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.web.attributes.disabled
+import org.jetbrains.compose.web.attributes.*
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
-import org.jetbrains.compose.web.events.MouseEvent
 
 @Composable
 fun GoogleSignInButton(onResult: (String, Boolean) -> Unit) {
@@ -15,11 +14,11 @@ fun GoogleSignInButton(onResult: (String, Boolean) -> Unit) {
     var processing by remember { mutableStateOf(false) }
 
     Button(attrs = {
-        this["class"] = "auth-button"
+        classes("auth-button")
         if (processing) {
             disabled()
         }
-        onClick { event: MouseEvent ->
+        onClick { event ->
             event.preventDefault()
             scope.launch {
                 processing = true
